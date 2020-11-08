@@ -338,5 +338,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-/COP4533/html_test_valid_very_large.txt
-/COP4533/html_test_valid_large.txt
+*.txt
