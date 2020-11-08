@@ -19,12 +19,14 @@ class LinkedList():
 		return self
 
 	def __next__(self):
-		if self.iter_node == self.tail:
+		if self.iter_node == None:
 			raise StopIteration
 		
+		data = self.iter_node.data
+
 		self.iter_node = self.iter_node.next
 		
-		return self.iter_node.data
+		return data
 	
 	def isEmpty(self):
 		'''Returns True if Linked List is empty, False if it contains data'''
@@ -108,9 +110,9 @@ class LinkedList():
 			self.tail == new_node
 		previous_node.next = new_node
 
-	def index(self, index):
+	def element_at(self, index):
 		'''Returns item at specified index'''
-		if position == 0:
+		if index == 0:
 			return head.data
 
 		current_node = head
@@ -172,11 +174,12 @@ class LinkedList():
 
 		s += "]"
 
-		return repr(s)
+		return s
 		
 
 
 def main():
+
 	myList = LinkedList()
 
 	for x in range(10):
@@ -201,6 +204,24 @@ def main():
 	test2.insert(300,1)
 	print(test2)
 	test2.pop()
+	print(test2)
+	test2.add(400)
+	test2.add(500)
+	test2.insert(600,0)
+	print(test2)
+	test2.insert(650,0)
+	print(test2)
+	test2.insert(675,0)
+	test2.insert(710,1)
+	test2.insert(700,1)
+	print(test2)
+	print(sorted(test2))
+	print(test2)
+	test2.pop()
+	print(test2)
+	test2.pop(0)
+	print(test2)
+	test2.pop(1)
 	print(test2)
 
 if __name__ == "__main__":
