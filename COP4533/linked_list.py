@@ -32,7 +32,19 @@ class LinkedList():
 		self.iter_node = self.iter_node.next
 		
 		return data
-	
+
+	def element_at(self, index):
+		'''Returns item at specified index'''
+		return self.node_at(index).data
+
+
+	def node_at(self, index):
+		'''Helper function returns node at index'''
+		current_node = self.head
+		for i in range(index):
+			current_node = current_node.next
+		return current_node
+
 	def isEmpty(self):
 		'''Returns True if Linked List is empty, False if it contains data'''
 		return self.head == None
@@ -50,30 +62,23 @@ class LinkedList():
 		new_node = Node(item)
 
 		if self.tail != None:
+
 			self.tail.next = new_node
 			self.tail = new_node
 		else:
-			head = new_node
-			tail = new_node
+
+			self.head = new_node
+			self.tail = new_node
 
 	def __len__(self):
-		return sum([1 for _ in self])
-
-	def count(self):
-		'''Returns number of nodes'''
-		return len(self)
-
-	def index(self, item):
-		'''Returns the index of the specified element in the list.'''
 		current = self.head
 		count = 0
 
 		while current != None:
-			if current.data == item:
-				return count
-			count += 1
+			count = count + 1
+			current = current.next
 
-		return None
+		return count
 
 	def search(self, item):
 		'''Returns true if item is found in list, false otherwise'''
@@ -116,25 +121,27 @@ class LinkedList():
 			self.head = new_node
 			return
 
-		previous_node = self.node_at(index - 1)
-		current_node = previous_node.next
+		current_node = self.head
+		previous_node = None
+		for i in range(index):
+			previous_node = current_node
+			current_node = current_node.next
 
 		new_node.next = current_node
 		if current_node == self.tail:
 			self.tail == new_node
 		previous_node.next = new_node
 
-	def element_at(self, index):
+	def index(self, index):
 		'''Returns item at specified index'''
-		return self.node_at(index).data
+		if position == 0:
+			return head.data
 
-
-	def node_at(self, index):
-		'''Helper function returns node at index'''
-		current_node = self.head
+		current_node = head
 		for i in range(index):
 			current_node = current_node.next
-		return current_node
+
+		return current_node.data
 
 	def clear():
 		'''Removes all items, good luck garbage collector'''
@@ -177,18 +184,6 @@ class LinkedList():
 
 		return current_node
 
-	def __getitem__(self, key):
-		return self.element_at(key)
-
-	def __setitem__(self, key):
-		self.insert(key)
-
-	def __delitem__(self, key):
-		self.pop(key)
-
-	def __contains__(self, item):
-		return self.search(item)
-
 	def __str__(self):
 		return "[" + ", ".join((str(x) for x in self)) + "]"
 		
@@ -207,55 +202,45 @@ def fill_list_prepend(list, count = 10000000):
 def main():
 
 	print("Test Results\n")
-	#print("Populating lists with 1,000,000 numbers, 5 runs each")
-	#print("-------------------------------------")
+	print("Populating lists with 1,000,000 numbers, 5 runs each")
+	print("-------------------------------------")
 
-	#times = timeit.repeat(setup = "python_list = []", stmt = "fill_list(python_list)", number = 1, repeat = 5, globals=globals())
-	#print("Python List: " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "python_list = []", stmt = "fill_list(python_list)", number = 1, repeat = 5, globals=globals())
+	print("Python List: " + str(["{0:0.5f}".format(time) for time in times]))
 
-	#times = timeit.repeat(setup = "", stmt = "python_list = [42] * 500000", number = 1, repeat = 5, globals=globals())
-	#print("Python List (ver 2): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "", stmt = "python_list = [42] * 500000", number = 1, repeat = 5, globals=globals())
+	print("Python List (ver 2): " + str(["{0:0.5f}".format(time) for time in times]))
 
-	#times = timeit.repeat(setup = "", stmt = "python_list = [42 for _ in range(500000)]", number = 1, repeat = 5, globals=globals())
-	#print("Python List (ver 3): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "", stmt = "python_list = [42 for _ in range(500000)]", number = 1, repeat = 5, globals=globals())
+	print("Python List (ver 3): " + str(["{0:0.5f}".format(time) for time in times]))
 
-	#times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list(python_deque)", number = 1, repeat = 5, globals=globals())
-	#print("Python Deque (append): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list(python_deque)", number = 1, repeat = 5, globals=globals())
+	print("Python Deque (append): " + str(["{0:0.5f}".format(time) for time in times]))
 
-	#times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list_appendleft(python_deque)", number = 1, repeat = 5, globals=globals())
-	#print("Python Deque (prepend): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list_appendleft(python_deque)", number = 1, repeat = 5, globals=globals())
+	print("Python Deque (prepend): " + str(["{0:0.5f}".format(time) for time in times]))
 
-	#times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list(my_list)", number = 1, repeat = 5, globals=globals())
-	#print("My List (append): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list(my_list)", number = 1, repeat = 5, globals=globals())
+	print("My List (append): " + str(["{0:0.5f}".format(time) for time in times]))
 
-	#times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list_prepend(my_list)", number = 1, repeat = 5, globals=globals())
-	#print("My List (prepend): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list_prepend(my_list)", number = 1, repeat = 5, globals=globals())
+	print("My List (prepend): " + str(["{0:0.5f}".format(time) for time in times]))
 
-	#print("Sorting lists")
-	#print("-------------------------------------")
+	print("\nSorting lists")
+	print("-------------------------------------")
 
-	#times = timeit.repeat(setup = "python_list = []\nfor x in range(1000000):\n	python_list.append(random.randrange(1,1001))", stmt = "python_list.sort()", number = 1, repeat = 5, globals=globals())
-	#print("Python list.sort(): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "python_list = []\nfor x in range(1000000):\n	python_list.append(random.randrange(1,1001))", stmt = "python_list.sort()", number = 1, repeat = 5, globals=globals())
+	print("Python list.sort(): " + str(["{0:0.5f}".format(time) for time in times]))
 
-	#times = timeit.repeat(setup = "python_list = []\nfor x in range(1000000):\n	python_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_list)", number = 1, repeat = 5, globals=globals())
-	#print("Python list sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "python_list = []\nfor x in range(1000000):\n	python_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_list)", number = 1, repeat = 5, globals=globals())
+	print("Python list sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
 
-	#times = timeit.repeat(setup = "python_deque = deque()\nfor x in range(1000000):\n	python_deque.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_deque)", number = 1, repeat = 5, globals=globals())
-	#print("Python deque sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "python_deque = deque()\nfor x in range(1000000):\n	python_deque.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_deque)", number = 1, repeat = 5, globals=globals())
+	print("Python deque sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
 
-	#times = timeit.repeat(setup = "my_list = LinkedList()\nfor x in range(1000000):\n	my_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(my_list)", number = 1, repeat = 5, globals=globals())
-	#print("My list sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "my_list = LinkedList()\nfor x in range(1000000):\n	my_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(my_list)", number = 1, repeat = 5, globals=globals())
+	print("My list sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
 	
-	my_list = LinkedList()
-	
-	for x in range(10):
-		my_list.add(random.randrange(1,1001))
-
-	print(my_list)
-	print(len(my_list))
-	print(my_list.count())
-	print(sorted(my_list))
-
 if __name__ == "__main__":
 	main()
 

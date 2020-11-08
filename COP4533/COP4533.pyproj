@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f1da70bb-05a4-4e57-a7a0-44b63a4adcf3</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>COP4533.py</StartupFile>
+    <StartupFile>linked_list.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
