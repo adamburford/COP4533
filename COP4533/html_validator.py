@@ -14,20 +14,18 @@ class HTMLChecker(HTMLParser):
 
 	def validate_html_file(self, file_name):
 
-		tag_stack = []
-		is_valid = True
+		self.tag_stack = []
+		self.is_valid = True
 
-		file = open(file_name)
+		with open(file_name, 'r') as html_file:
+			html_string = html_file.read()
 
-		self.feed(file.read())
+		self.feed(html_string)
 
-		if (is_valid and len(tag_stack) == 0):
-			return True
-		else:
-			return False
+		return self.is_valid and len(self.tag_stack) == 0
 
 	def handle_starttag(self, tag, attrs):
-		self.tag_stack.push(tag)
+		self.tag_stack.append(tag)
 
 	def handle_endtag(self, tag):
 		if self.tag_stack.pop() != tag:
