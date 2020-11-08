@@ -13,6 +13,7 @@ class Node:
         self.next = None
 
 class LinkedList():
+	'''Horrible implementation of doubly ended queue'''
 
 	def __init__(self):
 		self.head = None
@@ -36,20 +37,43 @@ class LinkedList():
 		'''Returns True if Linked List is empty, False if it contains data'''
 		return self.head == None
 
-	def add(self,item):
-		'''Add new item at first position in the list'''
+	def add(self, item):
+		'''Prepend item to list'''
 		new_node = Node(item)
 		new_node.next = self.head
 		self.head = new_node
 		if self.tail == None:
 			self.tail = new_node
 
-	def size(self):
-		'''Returns number of nodes'''
-		return sum(1 for _ in self)
+	def append(self, item):
+		'''Append item to list'''
+		new_node = Node(item)
+
+		if self.tail != None:
+			self.tail.next = new_node
+			self.tail = new_node
+		else:
+			head = new_node
+			tail = new_node
 
 	def __len__(self):
-		return self.size()
+		return sum([1 for _ in self])
+
+	def count(self):
+		'''Returns number of nodes'''
+		return len(self)
+
+	def index(self, item):
+		'''Returns the index of the specified element in the list.'''
+		current = self.head
+		count = 0
+
+		while current != None:
+			if current.data == item:
+				return count
+			count += 1
+
+		return None
 
 	def search(self, item):
 		'''Returns true if item is found in list, false otherwise'''
@@ -83,13 +107,6 @@ class LinkedList():
 			if current.next == None:
 				tail = previous
 
-	def append(self, item):
-		'''Adds item to the end of the list'''
-		new_node = Node(item)
-
-		tail.setNext(new_node)
-		tail = new_node
-
 	def insert(self, item, index):
 		'''Inserts item at specified index in list'''
 		new_node = Node(item)
@@ -113,6 +130,7 @@ class LinkedList():
 
 
 	def node_at(self, index):
+		'''Helper function returns node at index'''
 		current_node = self.head
 		for i in range(index):
 			current_node = current_node.next
@@ -159,12 +177,6 @@ class LinkedList():
 
 		return current_node
 
-	def removeAt(self, index):
-		'''Removes node at specified index'''
-
-	def __len__(self):
-		return self.size()
-
 	def __getitem__(self, key):
 		return self.element_at(key)
 
@@ -182,67 +194,67 @@ class LinkedList():
 		
 def fill_list(list, count = 1000000):
 	for x in range(count):
-		list.append(random.randrange(1,101))
+		list.append(42)
+
+def fill_list_appendleft(list, count = 10000000):
+	for x in range(count):
+		list.appendleft(42)
+
+def fill_list_prepend(list, count = 10000000):
+	for x in range(count):
+		list.add(42)
 
 def main():
 
-	time = timeit.timeit(setup = "python_list = []", stmt = "fill_list(python_list)", number = 3, globals=globals())
-	print(time)
+	print("Test Results\n")
+	#print("Populating lists with 1,000,000 numbers, 5 runs each")
+	#print("-------------------------------------")
 
-	mysetup = '''test'''
+	#times = timeit.repeat(setup = "python_list = []", stmt = "fill_list(python_list)", number = 1, repeat = 5, globals=globals())
+	#print("Python List: " + str(["{0:0.5f}".format(time) for time in times]))
 
-	python_deque = deque()
-	fill_list(python_deque, 100)
-	print(python_deque)
+	#times = timeit.repeat(setup = "", stmt = "python_list = [42] * 500000", number = 1, repeat = 5, globals=globals())
+	#print("Python List (ver 2): " + str(["{0:0.5f}".format(time) for time in times]))
 
+	#times = timeit.repeat(setup = "", stmt = "python_list = [42 for _ in range(500000)]", number = 1, repeat = 5, globals=globals())
+	#print("Python List (ver 3): " + str(["{0:0.5f}".format(time) for time in times]))
+
+	#times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list(python_deque)", number = 1, repeat = 5, globals=globals())
+	#print("Python Deque (append): " + str(["{0:0.5f}".format(time) for time in times]))
+
+	#times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list_appendleft(python_deque)", number = 1, repeat = 5, globals=globals())
+	#print("Python Deque (prepend): " + str(["{0:0.5f}".format(time) for time in times]))
+
+	#times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list(my_list)", number = 1, repeat = 5, globals=globals())
+	#print("My List (append): " + str(["{0:0.5f}".format(time) for time in times]))
+
+	#times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list_prepend(my_list)", number = 1, repeat = 5, globals=globals())
+	#print("My List (prepend): " + str(["{0:0.5f}".format(time) for time in times]))
+
+	#print("Sorting lists")
+	#print("-------------------------------------")
+
+	#times = timeit.repeat(setup = "python_list = []\nfor x in range(1000000):\n	python_list.append(random.randrange(1,1001))", stmt = "python_list.sort()", number = 1, repeat = 5, globals=globals())
+	#print("Python list.sort(): " + str(["{0:0.5f}".format(time) for time in times]))
+
+	#times = timeit.repeat(setup = "python_list = []\nfor x in range(1000000):\n	python_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_list)", number = 1, repeat = 5, globals=globals())
+	#print("Python list sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
+
+	#times = timeit.repeat(setup = "python_deque = deque()\nfor x in range(1000000):\n	python_deque.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_deque)", number = 1, repeat = 5, globals=globals())
+	#print("Python deque sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
+
+	#times = timeit.repeat(setup = "my_list = LinkedList()\nfor x in range(1000000):\n	my_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(my_list)", number = 1, repeat = 5, globals=globals())
+	#print("My list sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
+	
 	my_list = LinkedList()
-
+	
 	for x in range(10):
-		my_list.add(x + 1)
+		my_list.add(random.randrange(1,1001))
 
-	print("TEST LIST: " + str(my_list))
-	for x in my_list:
-		print(x)
-
-	myList = sorted(my_list)
-
-	print("Sorted: " + str(myList))
-	for x in myList:
-		print(x)
-
-	test1 = LinkedList()
-	test1.add(0)
-	test1.insert(1,1)
-
-	print(test1)
-
-	test2 = LinkedList()
-
-	test2.add(100)
-	test2.insert(200,0)
-	print(test2)
-	test2.insert(300,1)
-	print(test2)
-	test2.pop()
-	print(test2)
-	test2.add(400)
-	test2.add(500)
-	test2.insert(600,0)
-	print(test2)
-	test2.insert(650,0)
-	print(test2)
-	test2.insert(675,0)
-	test2.insert(710,1)
-	test2.insert(700,1)
-	print(test2)
-	print(sorted(test2))
-	print(test2)
-	test2.pop()
-	print(test2)
-	test2.pop(0)
-	print(test2)
-	test2.pop(1)
-	print(test2)
+	print(my_list)
+	print(len(my_list))
+	print(my_list.count())
+	print(sorted(my_list))
 
 if __name__ == "__main__":
 	main()

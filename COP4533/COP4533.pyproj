@@ -24,6 +24,7 @@
   <ItemGroup>
     <Compile Include="chuzukis_html_validator_extravaganza.py" />
     <Compile Include="COP4533.py" />
+    <Compile Include="cp_linked_list.py" />
     <Compile Include="html_validator.py">
       <SubType>Code</SubType>
     </Compile>
