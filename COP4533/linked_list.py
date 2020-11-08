@@ -5,6 +5,7 @@
 from collections import deque
 import timeit
 import random
+import statistics
 
 class Node:
 
@@ -110,7 +111,7 @@ class LinkedList():
 		else:
 			previous.setNext(current.next)
 			if current.next == None:
-				tail = previous
+				self.tail = previous
 
 	def insert(self, item, index):
 		'''Inserts item at specified index in list'''
@@ -135,9 +136,9 @@ class LinkedList():
 	def index(self, index):
 		'''Returns item at specified index'''
 		if position == 0:
-			return head.data
+			return self.head.data
 
-		current_node = head
+		current_node = self.head
 		for i in range(index):
 			current_node = current_node.next
 
@@ -202,45 +203,157 @@ def fill_list_prepend(list, count = 10000000):
 def main():
 
 	print("Test Results\n")
-	print("Populating lists with 1,000,000 numbers, 5 runs each")
+
+	print("Populating lists with 10,000 numbers, 5 runs each")
 	print("-------------------------------------")
 
-	times = timeit.repeat(setup = "python_list = []", stmt = "fill_list(python_list)", number = 1, repeat = 5, globals=globals())
-	print("Python List: " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "python_list = []", stmt = "fill_list(python_list, 10000)", number = 1, repeat = 5, globals=globals())
+	print("Python List: " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
 
-	times = timeit.repeat(setup = "", stmt = "python_list = [42] * 500000", number = 1, repeat = 5, globals=globals())
-	print("Python List (ver 2): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "", stmt = "python_list = [42] * 10000", number = 1, repeat = 5, globals=globals())
+	print("Python List (ver 2): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
 
-	times = timeit.repeat(setup = "", stmt = "python_list = [42 for _ in range(500000)]", number = 1, repeat = 5, globals=globals())
-	print("Python List (ver 3): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "", stmt = "python_list = [42 for _ in range(10000)]", number = 1, repeat = 5, globals=globals())
+	print("Python List (ver 3): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
 
-	times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list(python_deque)", number = 1, repeat = 5, globals=globals())
-	print("Python Deque (append): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list(python_deque, 10000)", number = 1, repeat = 5, globals=globals())
+	print("Python Deque (append): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Python Deque (append) Average: " + str(statistics.mean(times)))
 
-	times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list_appendleft(python_deque)", number = 1, repeat = 5, globals=globals())
-	print("Python Deque (prepend): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list_appendleft(python_deque, 10000)", number = 1, repeat = 5, globals=globals())
+	print("Python Deque (prepend): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
 
-	times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list(my_list)", number = 1, repeat = 5, globals=globals())
-	print("My List (append): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list(my_list, 10000)", number = 1, repeat = 5, globals=globals())
+	print("My List (append): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
 
-	times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list_prepend(my_list)", number = 1, repeat = 5, globals=globals())
-	print("My List (prepend): " + str(["{0:0.5f}".format(time) for time in times]))
+	times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list_prepend(my_list, 10000)", number = 1, repeat = 5, globals=globals())
+	print("My List (prepend): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
 
-	print("\nSorting lists")
+	print("\nPopulating lists with 100,000 numbers, 5 runs each")
+	print("-------------------------------------")
+
+	times = timeit.repeat(setup = "python_list = []", stmt = "fill_list(python_list, 100000)", number = 1, repeat = 5, globals=globals())
+	print("Python List: " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "", stmt = "python_list = [42] * 100000", number = 1, repeat = 5, globals=globals())
+	print("Python List (ver 2): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "", stmt = "python_list = [42 for _ in range(100000)]", number = 1, repeat = 5, globals=globals())
+	print("Python List (ver 3): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list(python_deque, 100000)", number = 1, repeat = 5, globals=globals())
+	print("Python Deque (append): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list_appendleft(python_deque, 100000)", number = 1, repeat = 5, globals=globals())
+	print("Python Deque (prepend): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list(my_list, 100000)", number = 1, repeat = 5, globals=globals())
+	print("My List (append): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list_prepend(my_list, 100000)", number = 1, repeat = 5, globals=globals())
+	print("My List (prepend): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	print("\nPopulating lists with 1,000,000 numbers, 5 runs each")
+	print("-------------------------------------")
+
+	times = timeit.repeat(setup = "python_list = []", stmt = "fill_list(python_list, 1000000)", number = 1, repeat = 5, globals=globals())
+	print("Python List: " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "", stmt = "python_list = [42] * 1000000", number = 1, repeat = 5, globals=globals())
+	print("Python List (ver 2): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "", stmt = "python_list = [42 for _ in range(1000000)]", number = 1, repeat = 5, globals=globals())
+	print("Python List (ver 3): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list(python_deque, 1000000)", number = 1, repeat = 5, globals=globals())
+	print("Python Deque (append): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "python_deque = deque()", stmt = "fill_list_appendleft(python_deque, 1000000)", number = 1, repeat = 5, globals=globals())
+	print("Python Deque (prepend): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list(my_list, 1000000)", number = 1, repeat = 5, globals=globals())
+	print("My List (append): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "my_list = LinkedList()", stmt = "fill_list_prepend(my_list, 1000000)", number = 1, repeat = 5, globals=globals())
+	print("My List (prepend): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	print("\nSorting lists of 10,000 numbers")
+	print("-------------------------------------")
+
+	times = timeit.repeat(setup = "python_list = []\nfor x in range(10000):\n	python_list.append(random.randrange(1,1001))", stmt = "python_list.sort()", number = 1, repeat = 5, globals=globals())
+	print("Python list.sort(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "python_list = []\nfor x in range(10000):\n	python_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_list)", number = 1, repeat = 5, globals=globals())
+	print("Python list sorted(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "python_deque = deque()\nfor x in range(10000):\n	python_deque.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_deque)", number = 1, repeat = 5, globals=globals())
+	print("Python deque sorted(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "my_list = LinkedList()\nfor x in range(10000):\n	my_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(my_list)", number = 1, repeat = 5, globals=globals())
+	print("My list sorted(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	print("\nSorting lists of 100,000 numbers")
+	print("-------------------------------------")
+
+	times = timeit.repeat(setup = "python_list = []\nfor x in range(100000):\n	python_list.append(random.randrange(1,1001))", stmt = "python_list.sort()", number = 1, repeat = 5, globals=globals())
+	print("Python list.sort(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "python_list = []\nfor x in range(100000):\n	python_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_list)", number = 1, repeat = 5, globals=globals())
+	print("Python list sorted(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "python_deque = deque()\nfor x in range(100000):\n	python_deque.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_deque)", number = 1, repeat = 5, globals=globals())
+	print("Python deque sorted(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	times = timeit.repeat(setup = "my_list = LinkedList()\nfor x in range(100000):\n	my_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(my_list)", number = 1, repeat = 5, globals=globals())
+	print("My list sorted(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
+	print("\nSorting lists of 1,000,000 numbers")
 	print("-------------------------------------")
 
 	times = timeit.repeat(setup = "python_list = []\nfor x in range(1000000):\n	python_list.append(random.randrange(1,1001))", stmt = "python_list.sort()", number = 1, repeat = 5, globals=globals())
-	print("Python list.sort(): " + str(["{0:0.5f}".format(time) for time in times]))
+	print("Python list.sort(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
 
 	times = timeit.repeat(setup = "python_list = []\nfor x in range(1000000):\n	python_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_list)", number = 1, repeat = 5, globals=globals())
-	print("Python list sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
-
+	print("Python list sorted(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+	
 	times = timeit.repeat(setup = "python_deque = deque()\nfor x in range(1000000):\n	python_deque.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(python_deque)", number = 1, repeat = 5, globals=globals())
-	print("Python deque sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
+	print("Python deque sorted(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
 
 	times = timeit.repeat(setup = "my_list = LinkedList()\nfor x in range(1000000):\n	my_list.append(random.randrange(1,1001))", stmt = "sorted_list = sorted(my_list)", number = 1, repeat = 5, globals=globals())
-	print("My list sorted(): " + str(["{0:0.5f}".format(time) for time in times]))
-	
+	print("My list sorted(): " + str(["{0:0.8f}".format(time) for time in times]))
+	print("Average: " + str(statistics.mean(times)))
+
 if __name__ == "__main__":
 	main()
 

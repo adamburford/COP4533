@@ -22,7 +22,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="chuzukis_html_validator_extravaganza.py" />
     <Compile Include="COP4533.py" />
     <Compile Include="cp_linked_list.py" />
     <Compile Include="html_validator.py">
@@ -35,10 +34,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="test.py" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="html_test_invalid.txt" />
-    <Content Include="html_test_valid.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
