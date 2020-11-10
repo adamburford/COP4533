@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f1da70bb-05a4-4e57-a7a0-44b63a4adcf3</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>linked_list.py</StartupFile>
+    <StartupFile>Assignment 3\binary_test.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,21 +22,41 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="html_validator.py">
+    <Compile Include="Assignment 2\html_validator.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="linked_list.py">
+    <Compile Include="Assignment 2\linked_list.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="recursion_max.py">
+    <Compile Include="Assignment 2\recursion_max.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\binary_string_list.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\binary_test.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\binary_search_experiments.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\sequential_string_list.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\sequential_test.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="html_test_invalid.txt" />
-    <Content Include="html_test_valid.txt" />
-    <Content Include="html_test_valid_large.txt" />
-    <Content Include="html_test_valid_very_large.txt" />
+    <Content Include="Assignment 2\test_files\html_test_invalid.txt" />
+    <Content Include="Assignment 2\test_files\html_test_valid.txt" />
+    <Content Include="Assignment 2\test_files\html_test_valid_large.txt" />
+    <Content Include="Assignment 2\test_files\html_test_valid_very_large.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assignment 2\" />
+    <Folder Include="Assignment 2\test_files\" />
+    <Folder Include="Assignment 3\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
