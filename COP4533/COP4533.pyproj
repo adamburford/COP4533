@@ -37,9 +37,6 @@
     <Compile Include="Assignment 3\binary_test.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Assignment 3\binary_search_experiments.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Assignment 3\binary_tree.py" />
     <Compile Include="Assignment 3\binary_tree_string_list.py">
       <SubType>Code</SubType>
