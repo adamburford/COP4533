@@ -15,19 +15,19 @@ def main():
     print("BinaryStringList Test\n--------------------------------------------------------------------------------")
     print("Test List: " + str(my_list))
     
-    #print("\nIn List Results\n--------------------------------------------------------------------------------")
-    #in_list_times = repeat("my_list.find(item)", "from random import randrange; item = my_list[randrange(20)]", globals={'my_list': my_list}, repeat=10)
-    #i = 1
-    #for time in in_list_times: print("Run " + str(i) + ": " + "{0:0.8f}".format(time)); i += 1
+    print("\nIn List Results\n--------------------------------------------------------------------------------")
+    in_list_times = repeat("my_list.find(item)", "from random import randrange; item = my_list[randrange(20)]", globals={'my_list': my_list}, repeat=10)
+    i = 1
+    for time in in_list_times: print("Run " + str(i) + ": " + "{0:0.8f}".format(time)); i += 1
 
 
 
-    #print("\n\nNot in List Results\n--------------------------------------------------------------------------------")
-    #not_in_list_times = repeat("my_list.find('not_in_list')", globals={'my_list': my_list}, repeat=10)
-    #i = 1
-    #for time in not_in_list_times: print("Run " + str(i) + ": " + "{0:0.8f}".format(time)); i += 1
+    print("\n\nNot in List Results\n--------------------------------------------------------------------------------")
+    not_in_list_times = repeat("my_list.find('not_in_list')", globals={'my_list': my_list}, repeat=10)
+    i = 1
+    for time in not_in_list_times: print("Run " + str(i) + ": " + "{0:0.8f}".format(time)); i += 1
 
-    #print("\n")
+    print("\n")
 
 if __name__ == "__main__":
 	main()

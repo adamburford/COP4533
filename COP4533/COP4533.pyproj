@@ -40,6 +40,31 @@
     <Compile Include="Assignment 3\binary_search_experiments.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Assignment 3\binary_tree.py" />
+    <Compile Include="Assignment 3\binary_tree_string_list.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\binary_tree_test.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\bubble_string_list.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\bubble_test.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\merge_string_list.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\merge_test.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\quick_string_list.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 3\quick_test.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Assignment 3\sequential_string_list.py">
       <SubType>Code</SubType>
     </Compile>
