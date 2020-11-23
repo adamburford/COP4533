@@ -1,3 +1,7 @@
+#Adam Burford
+#COP4533
+#Section 3594
+
 from binary_tree import BinarySearchTree
 
 class BinaryTreeStringList():

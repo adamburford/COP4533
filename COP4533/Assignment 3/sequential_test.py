@@ -20,8 +20,6 @@ def main():
     i = 1
     for time in in_list_times: print("Run " + str(i) + ": " + "{0:0.8f}".format(time)); i += 1
 
-
-
     print("\n\nNot in List Results\n--------------------------------------------------------------------------------")
     not_in_list_times = repeat("my_list.find('not_in_list')", globals={'my_list': my_list}, repeat=10)
     i = 1

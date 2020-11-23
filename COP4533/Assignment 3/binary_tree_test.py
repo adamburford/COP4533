@@ -20,10 +20,6 @@ def main():
         my_tree.add(item)
 
     print("Binary Tree Search Test")
-    #print("Test List: " + str(my_list))
-    
-    #my_list.sort()
-    #print("Sorted List: " + str(my_list))
 
     print("\n\nTimeIt Sort Results\n--------------------------------------------------------------------------------")
 
@@ -32,10 +28,6 @@ def main():
     print("1,000,000 runs of 20 searches for random string in tree:\n")   
     i = 1
     for time in times: print("Run " + str(i) + ": Total: " + "{0:0.8f}".format(time) + " Per Search: " + "{0:0.8f}".format(time / 20)); i += 1
-
-    #print("Total Time: " + str(sum(times)) + "\n")
-    #print("Average Time: " + "{0:0.8f}".format(mean(times)))
-    #print("Average Time for one search: " + "{0:0.8f}".format(sum(times) / (5 * 1000 * 1001)))
 
     print("\n")
 
