@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f1da70bb-05a4-4e57-a7a0-44b63a4adcf3</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Assignment 3\binary_test.py</StartupFile>
+    <StartupFile>Assignment 4\program_b.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -68,6 +68,12 @@
     <Compile Include="Assignment 3\sequential_test.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Assignment 4\program_a.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Assignment 4\program_b.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assignment 2\test_files\html_test_invalid.txt" />
@@ -79,6 +85,7 @@
     <Folder Include="Assignment 2\" />
     <Folder Include="Assignment 2\test_files\" />
     <Folder Include="Assignment 3\" />
+    <Folder Include="Assignment 4\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
